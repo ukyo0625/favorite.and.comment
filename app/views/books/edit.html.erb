@@ -1,0 +1,30 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<h1>Editing Book</h1>
+			<% if @book.errors.any? %>
+	           <h3>error</h3>
+               <% @book.errors.full_messages.each do |message| %>
+               <li><%= message %></li>
+               <% end %>
+            <% end %>
+			<%= form_for(@book, url:"/books/#{@book.id}") do |t| %>
+			    <div class="field">
+				    <h4>Title</h4>
+					<%= t.text_field :title ,class:"col-xs-12 book_title space" %>
+				</div>
+				<div class="field space">
+					<h4> Opionion</h4>
+					<%= t.text_area :body , class:"col-xs-12 book_body space" %>
+				</div>
+				<div class="actions space" >
+			        <%= t.submit 'Update Book' , class:"btn btn-primary col-xs-12" %>
+			    </div>
+			<% end %>
+
+			<%= link_to "Show","/books/#{@book.id}" %>
+			|
+		    <a href="/books">Back</a>
+		</div>
+	</div>
+</div>

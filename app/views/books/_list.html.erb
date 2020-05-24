@@ -1,0 +1,43 @@
+<div class="col-lg-3">
+	<h1>User info</h1>
+	<table class="table table-striped">
+        <tr>
+            <%= attachment_image_tag user, :profile_image,:fill,100,100 , format: 'jpeg', fallback: "no_image.jpg"%>
+        </tr>
+     	<tr>
+     		<th>name</th>
+     	    <td>
+     	    	<%= user.name %>
+     	    </td>
+ 	    </tr>
+        <tr>
+	  	  	    <th>introduction</th>
+	  	  	    <td>
+	  	  		    <%= user.introduction %>
+	  	  	    </td>
+  	    </tr>
+	</table>
+	<div>
+		<%= link_to "" ,edit_user_path(current_user.id), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_17836" %>
+	</div>
+	<h2>New book</h2>
+	<% if book_new.errors.any? %>
+		<h3>error</h3>
+		<% book_new.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		<% end %>
+	<% end %>
+	<%= form_for(book_new) do |t|  %>
+	    <div class="field">
+		    <h4>Title</h4>
+		    <%= t.text_field :title , class:"col-xs-12 book_title space"%>
+		</div>
+        <div class="field space">
+		    <h4>Opinion</h4>
+		    <%= t.text_area :body , class:"col-xs-12 book_body space" %>
+		</div>
+        <div class="actions space" >
+	        <%= t.submit 'Create Book',class:"btn btn-primary col-xs-12" %>
+	    </div>
+	<% end %>
+</div>
